@@ -23,18 +23,37 @@
     <th>auto numbrimärk</th>
     <th>värv</th>
     <th></th>
+    <th></th>
 </tr>
 <?php 
     
     // autod ükshaaval läbi käia
     for($i = 0; $i < count($car_array); $i++){
-        echo "<tr>";
-        echo "<td>".$car_array[$i]->id."</td>";
-        echo "<td>".$car_array[$i]->user_id."</td>";
-        echo "<td>".$car_array[$i]->number_plate."</td>";
-        echo "<td>".$car_array[$i]->color."</td>";
-        echo "<td><a href='?delete=".$car_array[$i]->id."'>X</a></td>";
-        echo "</tr>";
+        
+        // kasutaja tahab rida muuta
+        if(isset($_GET["edit"]) && $_GET["edit"] == $car_array[$i]->id){
+            echo "<tr>";
+            echo "<td>".$car_array[$i]->id."</td>";
+            echo "<td>".$car_array[$i]->user_id."</td>";
+            echo "<td><input name='number_plate' value='".$car_array[$i]->number_plate."' ></td>";
+            echo "<td><input name='color' value='".$car_array[$i]->color."' ></td>";
+            echo "<td><a href='?update=".$car_array[$i]->id."'>save</a></td>";
+            echo "<td><a href='table.php'>cancel</a></td>";
+            echo "</tr>";
+        }else{
+            // lihtne vaade
+            echo "<tr>";
+            echo "<td>".$car_array[$i]->id."</td>";
+            echo "<td>".$car_array[$i]->user_id."</td>";
+            echo "<td>".$car_array[$i]->number_plate."</td>";
+            echo "<td>".$car_array[$i]->color."</td>";
+            echo "<td><a href='?delete=".$car_array[$i]->id."'>X</a></td>";
+            echo "<td><a href='?edit=".$car_array[$i]->id."'>edit</a></td>";
+            echo "</tr>";
+            
+        }
+        
+        
         
         
     }
