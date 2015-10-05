@@ -1,6 +1,16 @@
 <?php  
     require_once("functions.php");
     
+    
+    // kuulan, kas kasutaja tahab kustutada
+    // ?delete=... on aadressireal
+    if(isset($_GET["delete"])) {
+        ///saadan kustutatava auto id
+        deleteCarData($_GET["delete"]);
+    }
+    
+    
+    
     // kõik autod objektide kujul massiivis
     $car_array = getAllData();
 ?>
